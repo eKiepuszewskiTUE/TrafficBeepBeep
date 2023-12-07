@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkrv6krnjtga1"]
+[gd_scene load_steps=3 format=3 uid="uid://dkrv6krnjtga1"]
 
-[ext_resource type="Texture2D" uid="uid://blkl88gut5ixy" path="res://icon.svg" id="1_5puka"]
+[ext_resource type="Script" path="res://Main.gd" id="1_4nbhc"]
+[ext_resource type="PackedScene" uid="uid://ch0ycup7mhpgr" path="res://graph.tscn" id="2_gq48g"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_4nbhc")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(480, 283)
-texture = ExtResource("1_5puka")
+[node name="Graph" parent="." instance=ExtResource("2_gq48g")]
