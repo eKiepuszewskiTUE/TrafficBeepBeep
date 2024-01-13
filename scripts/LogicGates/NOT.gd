@@ -1,18 +1,18 @@
-extends Area2D
-
-var inputs = [false, false] # OR gate has two inputs
-var output = false
+extends LogicGate
 
 func _ready():
-	update_gate()
+	super()
+	inputs = [false] # NOT gate has one input
+	output = false
 
 func set_input(index, value):
-	inputs[index] = value
+	inputs[0] = value
 	calculate_output()
 
 func calculate_output():
-	output = inputs[0] || inputs[1]
+	output = !inputs[0]
 	update_gate()
 
 func update_gate():
 	# Update visual representation here
+	pass

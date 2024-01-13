@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0vspic1uwe6t"]
+[gd_scene load_steps=3 format=3 uid="uid://c0vspic1uwe6t"]
 
-[ext_resource type="Script" path="res://OR.gd" id="1_6cu7m"]
+[ext_resource type="Script" path="res://scripts/LogicGates/OR.gd" id="1_1tn0b"]
+[ext_resource type="Texture2D" uid="uid://bvyd530e2xpso" path="res://sprites/LogicRoads/OR.png" id="2_xdalo"]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_6cu7m")
+script = ExtResource("1_1tn0b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xdalo")

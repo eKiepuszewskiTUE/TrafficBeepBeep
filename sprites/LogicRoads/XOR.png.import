@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj5o7u6r3akf6"
-path="res://.godot/imported/circle_highlighted.png-5947cb1bf8e164db40fe4f436de2d43e.ctex"
+uid="uid://dnrntasa2qbcd"
+path="res://.godot/imported/XOR.png-b09bbdf40dc05e70ade62a73b1bb7780.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/circle_highlighted.png"
-dest_files=["res://.godot/imported/circle_highlighted.png-5947cb1bf8e164db40fe4f436de2d43e.ctex"]
+source_file="res://sprites/LogicRoads/XOR.png"
+dest_files=["res://.godot/imported/XOR.png-b09bbdf40dc05e70ade62a73b1bb7780.ctex"]
 
 [params]
 

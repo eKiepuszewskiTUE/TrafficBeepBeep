@@ -1,14 +1,9 @@
-extends Area2D
-
-var inputs = [false, false] # XOR gate has two inputs
-var output = false
+extends LogicGate
 
 func _ready():
-	update_gate()
-
-func set_input(index, value):
-	inputs[index] = value
-	calculate_output()
+	super()
+	inputs = [false, false] # XOR gate has two inputs
+	output = false
 
 func calculate_output():
 	output = (inputs[0] && !inputs[1]) || (!inputs[0] && inputs[1])
@@ -16,3 +11,4 @@ func calculate_output():
 
 func update_gate():
 	# Update visual representation here
+	pass

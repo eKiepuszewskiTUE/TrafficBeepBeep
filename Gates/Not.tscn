@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://mpshcfigh716"]
+[gd_scene load_steps=3 format=3 uid="uid://mpshcfigh716"]
 
-[ext_resource type="Script" path="res://Area2D.gd" id="1_4p6qi"]
+[ext_resource type="Script" path="res://scripts/LogicGates/NOT.gd" id="1_upb1e"]
+[ext_resource type="Texture2D" uid="uid://bboj3r86xvcmt" path="res://sprites/LogicRoads/NOT.png" id="2_bqdf6"]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_4p6qi")
+script = ExtResource("1_upb1e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_bqdf6")

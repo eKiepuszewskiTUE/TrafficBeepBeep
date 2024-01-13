@@ -1,13 +1,15 @@
 extends Node2D
 
-var graph_node = preload("res://graph_node.tscn") # change if directory changes
+var not_gate = preload("res://Gates/NOT.tscn")
+var and_gate = preload("res://Gates/AND.tscn")
+var or_gate = preload("res://Gates/OR.tscn")
+var xor_gate = preload("res://Gates/XOR.tscn")
+var nand_gate = preload("res://Gates/NAND.tscn")
 
-enum Mode {Edit, Play}
-var mode : Mode
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	mode = Mode.Edit
 	pass # Replace with function body.
 
 

@@ -1,8 +1,20 @@
-[gd_scene format=3 uid="uid://chq0qciix1c2q"]
+[gd_scene load_steps=4 format=3 uid="uid://chq0qciix1c2q"]
+
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_lcnmb"]
+[ext_resource type="PackedScene" uid="uid://mpshcfigh716" path="res://Gates/NOT.tscn" id="2_voih8"]
+[ext_resource type="PackedScene" uid="uid://d12wbsr3ecrow" path="res://Scenes/source.tscn" id="3_xcvad"]
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_lcnmb")
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
+[node name="LogicGates" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Area2D" parent="LogicGates" instance=ExtResource("2_voih8")]
+position = Vector2(355, 306)
+
+[node name="Source" parent="." instance=ExtResource("3_xcvad")]
+position = Vector2(228, 311)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(5, 5)

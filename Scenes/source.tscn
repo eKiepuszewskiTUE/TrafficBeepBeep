@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d12wbsr3ecrow"]
+
+[ext_resource type="Script" path="res://scripts/source.gd" id="1_3g7qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0t7oy"]
+size = Vector2(23, 23)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0muxf"]
+font_size = 60
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Source" type="Area2D"]
+script = ExtResource("1_3g7qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_0t7oy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+text = "1"
+label_settings = SubResource("LabelSettings_0muxf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ot8ugt0h7820"]
+[gd_scene load_steps=3 format=3 uid="uid://ot8ugt0h7820"]
 
-[ext_resource type="Script" path="res://NAND.gd" id="1_s31qh"]
+[ext_resource type="Script" path="res://scripts/LogicGates/NAND.gd" id="1_n34ni"]
+[ext_resource type="Texture2D" uid="uid://cpm6igjkoahxk" path="res://sprites/LogicRoads/NAND.png" id="2_dupu8"]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_s31qh")
+script = ExtResource("1_n34ni")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dupu8")
