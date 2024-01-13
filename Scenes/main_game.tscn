@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://chq0qciix1c2q"]
+
+[node name="MainGame" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
