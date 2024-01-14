@@ -6,13 +6,25 @@ var or_gate = preload("res://Gates/OR.tscn")
 var xor_gate = preload("res://Gates/XOR.tscn")
 var nand_gate = preload("res://Gates/NAND.tscn")
 
+var tile = preload("res://Scenes/tile.tscn")
 
+@export var gridSize : int
+var cellSize : int = 16
+var GameGrid : Array
+var camera : Camera2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	camera = $Camera2D
+	DisplayServer.window_set_size(Vector2i(gridSize * cellSize * camera.zoom.x, gridSize * cellSize * camera.zoom.y))
+	create_game_grid()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+# Creates the game grid
+func create_game_grid() -> void:
+	for r in range(gridSize):
+		var rows = []
+		for c in range(gridSize):
+			var new_tile = tile.instantiate()
+			new_tile.position = Vector2(r * cellSize, c * cellSize)
+			rows += [new_tile]
+			add_child(new_tile)
+		GameGrid += [rows]
