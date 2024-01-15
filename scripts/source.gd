@@ -2,17 +2,12 @@ extends Area2D
 class_name Source
 
 var value : bool
-var label : Label
-
-func _ready():
-	label = $Label
+var textures : Array = [preload("res://sprites/Source0.png"), preload("res://sprites/Source1.png")]
 
 func set_value(value) -> void:
 	self.value = value
-	set_label_value(value)
-
-func set_label_value(value) -> void:
-	label.text = str(int(value))
+	$Sprite2D.texture = textures[value]
+	
 
 func get_value() -> bool:
 	return self.value
