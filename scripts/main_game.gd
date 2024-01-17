@@ -25,9 +25,6 @@ func _ready():
 	create_game_grid()
 	connect_ui_signals()
 
-func _process(delta):
-	print(new_tile_selected)
-
 # Creates the game grid
 func create_game_grid() -> void:
 	for r in range(gridSize):
@@ -47,6 +44,7 @@ func connect_ui_signals() -> void:
 	ui.gate_selected.connect(_on_gate_selected)
 
 func _on_gate_selected(gate_type: String) -> void:
+	print("Gate selected: ", gate_type)
 	match gate_type:
 		"Road":
 			new_tile_selected = Tile_Type.Road

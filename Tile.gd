@@ -32,11 +32,10 @@ func _on_area_2d_mouse_exited() -> void:
 
 func change_tile_object(new_tile_type):
 	var new_tile = dict[new_tile_type]
-	if (tile_object != null):
-		self.tile_object.queue_free()
-	self.tile_object = new_tile
+	if (tile_object != new_tile and tile_object != null):
+		tile_object.queue_free()
 	var temp = new_tile.instantiate()
-	print(temp)
+	tile_object = new_tile
 	add_child(temp)
 
 signal mouse_clicked(this)
