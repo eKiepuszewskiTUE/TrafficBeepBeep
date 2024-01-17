@@ -25,17 +25,31 @@ func _ready():
 	create_game_grid()
 	connect_ui_signals()
 
-func _process(delta: float) -> void:
-	# UI buttons will now handle the tile selection, so no need for keyboard input here.
-	pass
+func _process(delta):
+	print(new_tile_selected)
+
+# Creates the game grid
+func create_game_grid() -> void:
+	for r in range(gridSize):
+		var rows = []
+		for c in range(gridSize):
+			var new_tile = tile.instantiate()
+			new_tile.position = Vector2(r * cellSize, c * cellSize)
+			new_tile.mouse_clicked.connect(_on_area_2d_input_event)
+			#new_tile.get_node("Area2D").input_event.connect(_on_area_2d_input_event)
+			rows += [new_tile]
+			add_child(new_tile)
+		GameGrid += [rows]
 
 func connect_ui_signals() -> void:
 	# Assuming the UI scene is a direct child of this node, replace "UI" with your actual UI scene's name
-	var ui = $UI
-	ui.connect("gate_selected", self, "_on_gate_selected")
+	var ui = $CanvasLayer/UI
+	ui.gate_selected.connect(_on_gate_selected)
 
 func _on_gate_selected(gate_type: String) -> void:
 	match gate_type:
+		"Road":
+			new_tile_selected = Tile_Type.Road
 		"AND":
 			new_tile_selected = Tile_Type.AND
 		"NAND":
@@ -49,4 +63,5 @@ func _on_gate_selected(gate_type: String) -> void:
 		_:
 			print("Unknown gate type selected")
 
-
+func _on_area_2d_input_event(tile_instance):
+	tile_instance.change_tile_object(new_tile_selected)
