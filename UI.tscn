@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq6goc8r51jxw"]
+[gd_scene load_steps=11 format=3 uid="uid://dq6goc8r51jxw"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_hwf0b"]
 [ext_resource type="Texture2D" uid="uid://b6vh4mwvj5nnq" path="res://inventorySprites/InvAnd.png" id="1_usk78"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c28tglvyrrfu4" path="res://inventorySprites/InvSelect.png" id="2_pyhli"]
 [ext_resource type="Texture2D" uid="uid://qeyvqdenoglw" path="res://inventorySprites/InvNand.png" id="3_6aalx"]
 [ext_resource type="Texture2D" uid="uid://ds4kcm2bkj6qy" path="res://inventorySprites/InvNot.png" id="4_pyyvr"]
+[ext_resource type="Texture2D" uid="uid://be3fpw0u8avqv" path="res://inventorySprites/InvRoad2L.png" id="4_w2f4d"]
 [ext_resource type="Texture2D" uid="uid://ftoedvx6p6nm" path="res://inventorySprites/InvOr.png" id="5_a8ndo"]
+[ext_resource type="Texture2D" uid="uid://cnmiiaskuw2xw" path="res://inventorySprites/InvRoadS.png" id="5_my10s"]
 [ext_resource type="Texture2D" uid="uid://ds526eeuoyt1d" path="res://inventorySprites/InvXor.png" id="6_7fd3y"]
 
 [node name="UI" type="Control"]
@@ -28,6 +30,16 @@ offset_bottom = 731.0
 [node name="Road_Button" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_jpo4s")
+texture_pressed = ExtResource("2_pyhli")
+
+[node name="Road2_Button" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_w2f4d")
+texture_pressed = ExtResource("2_pyhli")
+
+[node name="Road3_Button" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_my10s")
 texture_pressed = ExtResource("2_pyhli")
 
 [node name="AND_Button" type="TextureButton" parent="HBoxContainer"]
@@ -56,6 +68,8 @@ texture_normal = ExtResource("6_7fd3y")
 texture_pressed = ExtResource("2_pyhli")
 
 [connection signal="pressed" from="HBoxContainer/Road_Button" to="." method="_on_road_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Road2_Button" to="." method="_on_road_2_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Road3_Button" to="." method="_on_road_3_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/AND_Button" to="." method="_on_and_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/NAND_Button" to="." method="_on_nand_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/NOT_Button" to="." method="_on_not_button_pressed"]

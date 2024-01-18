@@ -20,3 +20,8 @@ func _on_xor_button_pressed():
 
 func _on_road_button_pressed():
 	gate_selected.emit("Road")
+
+func _on_road_2_button_pressed():
+	gate_selected.emit("Road2")
+func _on_road_3_button_pressed():
+	gate_selected.emit("Road2")
