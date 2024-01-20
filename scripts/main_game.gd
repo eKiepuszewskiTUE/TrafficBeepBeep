@@ -5,7 +5,9 @@ var cellSize: int = 16
 var GameGrid: Array
 var camera: Camera2D
 
-enum Tile_Type {AND, NAND, NOT, OR, XOR, Road, Source}
+enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source}
+
+var level = [Vector2(13,8),Vector2(13,12)]
 
 # Preload gate scenes
 var gate_scenes = {
@@ -16,23 +18,30 @@ var gate_scenes = {
 	Tile_Type.XOR: preload("res://Gates/XOR.tscn")
 }
 
+var source = preload("res://Scenes/source.tscn")
 var tile = preload("res://Scenes/tile.tscn")
-var new_tile_selected: Tile_Type = Tile_Type.Road
+var new_tile_selected: Tile_Type = Tile_Type.RoadS
 
 func _ready():
 	camera = $Camera2D
 	DisplayServer.window_set_size(Vector2i(gridSize * cellSize * camera.zoom.x, gridSize * cellSize * camera.zoom.y))
 	create_game_grid()
+	initialize_level()
 	connect_ui_signals()
+
+func initialize_level():
+	for coords in level:
+		GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.Source)
 
 # Creates the game grid
 func create_game_grid() -> void:
-	for r in range(gridSize):
+	for r in range(gridSize, -1, -1):
 		var rows = []
-		for c in range(gridSize):
+		for c in range(gridSize, -1, -1):
 			var new_tile = tile.instantiate()
 			new_tile.position = Vector2(r * cellSize, c * cellSize)
 			new_tile.mouse_clicked.connect(_on_area_2d_input_event)
+			new_tile.mouse_entered.connect(_on_area_2d_mouse_entered)
 			#new_tile.get_node("Area2D").input_event.connect(_on_area_2d_input_event)
 			rows += [new_tile]
 			add_child(new_tile)
@@ -45,9 +54,20 @@ func connect_ui_signals() -> void:
 
 func _on_gate_selected(gate_type: String) -> void:
 	print("Gate selected: ", gate_type)
+	
 	match gate_type:
-		"Road":
-			new_tile_selected = Tile_Type.Road
+		"RoadS":
+			new_tile_selected = Tile_Type.RoadS
+		"RoadB":
+			new_tile_selected = Tile_Type.RoadB
+		"RoadD":
+			new_tile_selected = Tile_Type.RoadD
+		"RoadU":
+			new_tile_selected = Tile_Type.RoadU
+		"RoadC":
+			new_tile_selected = Tile_Type.RoadC
+		"RoadV":
+			new_tile_selected = Tile_Type.RoadV
 		"AND":
 			new_tile_selected = Tile_Type.AND
 		"NAND":
@@ -60,6 +80,9 @@ func _on_gate_selected(gate_type: String) -> void:
 			new_tile_selected = Tile_Type.XOR
 		_:
 			print("Unknown gate type selected")
+
+func _on_area_2d_mouse_entered(tile_instance):
+	tile_instance.set_double_tile(new_tile_selected)
 
 func _on_area_2d_input_event(tile_instance):
 	tile_instance.change_tile_object(new_tile_selected)

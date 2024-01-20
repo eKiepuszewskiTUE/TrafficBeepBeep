@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://puog6aa0ae5r"]
 
 [ext_resource type="Script" path="res://Tile.gd" id="1_lrrfq"]
-[ext_resource type="Texture2D" uid="uid://cn4o46yg5obwf" path="res://sprites/grass.png" id="2_6r6rv"]
+[ext_resource type="Texture2D" uid="uid://duuacj3uvhcj8" path="res://sprites/bkg.png" id="2_yop3b"]
 [ext_resource type="Texture2D" uid="uid://dikwhxa1vuvfp" path="res://sprites/highlight.png" id="3_5rkdo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2snmy"]
@@ -11,7 +11,7 @@ size = Vector2(16, 16)
 script = ExtResource("1_lrrfq")
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("2_6r6rv")
+texture = ExtResource("2_yop3b")
 
 [node name="Area2D" type="Area2D" parent="."]
 

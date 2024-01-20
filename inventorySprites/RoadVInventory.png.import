@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7jypnmvdy2u7"
-path="res://.godot/imported/RoadConnector.png-ec4602f6b7632349cc10f94a30d58253.ctex"
+uid="uid://dy7olwa1oaboj"
+path="res://.godot/imported/RoadVInventory.png-944c65f7d80cde02c808a4f0e51428d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/DefaultRoads/RoadConnector.png"
-dest_files=["res://.godot/imported/RoadConnector.png-ec4602f6b7632349cc10f94a30d58253.ctex"]
+source_file="res://inventorySprites/RoadVInventory.png"
+dest_files=["res://.godot/imported/RoadVInventory.png-944c65f7d80cde02c808a4f0e51428d2.ctex"]
 
 [params]
 

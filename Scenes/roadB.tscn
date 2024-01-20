@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://pp6detgw7llc"]
+
+[ext_resource type="Texture2D" uid="uid://b0xydxsk5xiwv" path="res://sprites/DefaultRoads/RoadDouble.png" id="1_bvn40"]
+
+[node name="Road" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -0.3)
+texture = ExtResource("1_bvn40")
+offset = Vector2(2.08165e-12, 4)

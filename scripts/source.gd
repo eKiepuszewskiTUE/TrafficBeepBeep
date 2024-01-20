@@ -6,7 +6,7 @@ var textures : Array = [preload("res://sprites/Source0.png"), preload("res://spr
 
 func set_value(value) -> void:
 	self.value = value
-	$Sprite2D.texture = textures[value]
+	$Sprite2D.texture = textures[int(value)]
 	
 
 func get_value() -> bool:

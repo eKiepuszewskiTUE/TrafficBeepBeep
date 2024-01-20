@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://rfpj16e6kpvh"]
+
+[ext_resource type="Texture2D" uid="uid://i7p6t8rci41" path="res://sprites/DefaultRoads/RoadV.png" id="1_ad04j"]
+
+[node name="Road" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -0.3)
+texture = ExtResource("1_ad04j")
+offset = Vector2(2.08165e-12, 3)

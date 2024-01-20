@@ -19,9 +19,19 @@ func _on_xor_button_pressed():
 	gate_selected.emit("XOR")
 
 func _on_road_button_pressed():
-	gate_selected.emit("Road")
+	gate_selected.emit("RoadS")
 
-func _on_road_2_button_pressed():
-	gate_selected.emit("Road2")
-func _on_road_3_button_pressed():
-	gate_selected.emit("Road2")
+func _on_road_b_button_pressed():
+	gate_selected.emit("RoadB")
+
+func _on_road_d_button_pressed():
+	gate_selected.emit("RoadD")
+
+func _on_road_u_button_pressed():
+	gate_selected.emit("RoadU")
+
+func _on_road_c_button_pressed():
+	gate_selected.emit("RoadC")
+
+func _on_road_v_button_pressed():
+	gate_selected.emit("RoadV")

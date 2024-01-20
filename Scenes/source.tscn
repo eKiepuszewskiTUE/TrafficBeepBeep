@@ -14,6 +14,8 @@ scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_0t7oy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -0.3)
 texture = ExtResource("2_4jw1r")
+offset = Vector2(2.08165e-12, 3)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

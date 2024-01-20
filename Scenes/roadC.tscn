@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg230hv2jyvrt"]
+
+[ext_resource type="Texture2D" uid="uid://b7jypnmvdy2u7" path="res://sprites/DefaultRoads/RoadConnector.png" id="1_kmv5h"]
+
+[node name="Road" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -0.3)
+texture = ExtResource("1_kmv5h")
+offset = Vector2(2.08165e-12, 3)
