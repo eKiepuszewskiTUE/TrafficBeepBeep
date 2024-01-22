@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://chq0qciix1c2q"]
+[gd_scene load_steps=7 format=3 uid="uid://chq0qciix1c2q"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_lcnmb"]
+[ext_resource type="Texture2D" uid="uid://c67iheb65vi4k" path="res://inventorySprites/PlayB.png" id="3_lcqus"]
 [ext_resource type="PackedScene" uid="uid://dq6goc8r51jxw" path="res://UI.tscn" id="4_3v5ml"]
+[ext_resource type="Texture2D" uid="uid://cp8dkruc233hj" path="res://inventorySprites/PlayBC.png" id="4_v27lx"]
+[ext_resource type="Texture2D" uid="uid://dfil6p22afcwd" path="res://inventorySprites/ResB.png" id="5_gf000"]
+[ext_resource type="Texture2D" uid="uid://cspgobxxvlltq" path="res://inventorySprites/ResBC.png" id="6_h7w1n"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_lcnmb")
@@ -19,20 +23,23 @@ offset_right = 0.0
 offset_bottom = 0.0
 scale = Vector2(0.15, 0.15)
 
-[node name="PlayButton" type="Button" parent="CanvasLayer"]
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer"]
 offset_left = 19.0
 offset_top = 120.0
-offset_right = 251.0
-offset_bottom = 209.0
-text = "Start
-"
+offset_right = 31.0
+offset_bottom = 131.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("3_lcqus")
+texture_pressed = ExtResource("4_v27lx")
 
-[node name="RestartButton" type="Button" parent="CanvasLayer"]
-offset_left = 284.0
-offset_top = 120.0
-offset_right = 537.0
-offset_bottom = 210.0
-text = "Restart"
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 131.0
+offset_top = 122.0
+offset_right = 142.0
+offset_bottom = 133.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("5_gf000")
+texture_pressed = ExtResource("6_h7w1n")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

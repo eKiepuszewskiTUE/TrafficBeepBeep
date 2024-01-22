@@ -5,9 +5,9 @@ var cellSize: int = 16
 var GameGrid: Array
 var camera: Camera2D
 
-enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source}
+enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source, ParkingLot}
 
-var level = [Vector2(13,8),Vector2(13,12)]
+var level = [Vector3(13,12,0), Vector3(8, 12, 1)]
 var playing : bool = false
 
 # Preload gate scenes
@@ -20,6 +20,7 @@ var gate_scenes = {
 }
 
 var source = preload("res://Scenes/source.tscn")
+var parking_lot = preload("res://Scenes/ParkingLot.tscn")
 var tile = preload("res://Scenes/tile.tscn")
 var new_tile_selected: Tile_Type = Tile_Type.RoadS
 var car = preload("res://Scenes/car.tscn")
@@ -34,11 +35,14 @@ func _ready():
 
 func initialize_level():
 	for coords in level:
-		GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.Source)
-		var new_car = car.instantiate()
-		new_car.position = GameGrid[coords.x][coords.y].position
-		cars += [new_car] 
-		add_child(new_car)
+		if (coords.z == 0):
+			GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.Source)
+			var new_car = car.instantiate()
+			new_car.position = GameGrid[coords.x][coords.y].position
+			cars += [new_car] 
+			add_child(new_car)
+		if (coords.z == 1): 
+			GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.ParkingLot)
 
 # Creates the game grid
 func create_game_grid() -> void:

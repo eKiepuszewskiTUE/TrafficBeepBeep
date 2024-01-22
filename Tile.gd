@@ -2,6 +2,7 @@ extends Node2D
 class_name Tile
 
 var source = preload("res://Scenes/source.tscn")
+var parking_lot = preload("res://Scenes/ParkingLot.tscn")
 var road = preload("res://Scenes/road.tscn")
 var roadB = preload("res://Scenes/roadB.tscn")
 var roadD = preload("res://Scenes/roadD.tscn")
@@ -14,7 +15,7 @@ var or_gate = preload("res://Gates/OR.tscn")
 var xor_gate = preload("res://Gates/XOR.tscn")
 var nand_gate = preload("res://Gates/NAND.tscn")
 
-enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source}
+enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source, ParkingLot}
 var dict = {
 	Tile_Type.RoadS : road,
 	Tile_Type.RoadB : roadB,
@@ -23,6 +24,7 @@ var dict = {
 	Tile_Type.RoadC : roadC,
 	Tile_Type.RoadV : roadV,
 	Tile_Type.Source : source,
+	Tile_Type.ParkingLot : parking_lot,
 	Tile_Type.AND : and_gate,
 	Tile_Type.NAND : nand_gate,
 	Tile_Type.NOT : not_gate,
