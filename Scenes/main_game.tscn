@@ -18,3 +18,26 @@ zoom = Vector2(5, 5)
 offset_right = 0.0
 offset_bottom = 0.0
 scale = Vector2(0.15, 0.15)
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 19.0
+offset_top = 120.0
+offset_right = 251.0
+offset_bottom = 209.0
+text = "Start
+"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer"]
+offset_left = 284.0
+offset_top = 120.0
+offset_right = 537.0
+offset_bottom = 210.0
+text = "Restart"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

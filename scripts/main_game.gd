@@ -8,6 +8,7 @@ var camera: Camera2D
 enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source}
 
 var level = [Vector2(13,8),Vector2(13,12)]
+var playing : bool = false
 
 # Preload gate scenes
 var gate_scenes = {
@@ -21,6 +22,8 @@ var gate_scenes = {
 var source = preload("res://Scenes/source.tscn")
 var tile = preload("res://Scenes/tile.tscn")
 var new_tile_selected: Tile_Type = Tile_Type.RoadS
+var car = preload("res://Scenes/car.tscn")
+var cars = []
 
 func _ready():
 	camera = $Camera2D
@@ -32,6 +35,10 @@ func _ready():
 func initialize_level():
 	for coords in level:
 		GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.Source)
+		var new_car = car.instantiate()
+		new_car.position = GameGrid[coords.x][coords.y].position
+		cars += [new_car] 
+		add_child(new_car)
 
 # Creates the game grid
 func create_game_grid() -> void:
@@ -86,3 +93,40 @@ func _on_area_2d_mouse_entered(tile_instance):
 
 func _on_area_2d_input_event(tile_instance):
 	tile_instance.change_tile_object(new_tile_selected)
+
+func start_game():
+	playing = true
+
+func stop_game():
+	playing = false
+
+func restart():
+	for eCar in cars:
+		eCar.queue_free()
+	cars.clear()
+	stop_game()
+	initialize_level()
+
+func _on_play_button_pressed():
+	if (playing):
+		stop_game()
+	else:
+		start_game()
+
+func position_to_grid(pos):
+	return Vector2(gridSize - int((pos.x + 8) / cellSize), gridSize - int((pos.y + 8) / cellSize))
+
+func is_grid_empty(coords):
+	return GameGrid[coords.x][coords.y].get_tile_object() == null
+
+func _on_timer_timeout():
+	if (playing):
+		for eCar in cars:
+			#print(eCar.position)
+			#print(position_to_grid(eCar.position))
+			if (!is_grid_empty(position_to_grid(eCar.position))):
+				eCar.move(2)
+
+
+func _on_restart_button_pressed():
+	restart()

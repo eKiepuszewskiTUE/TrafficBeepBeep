@@ -81,6 +81,9 @@ func change_tile_object(new_tile_type):
 	tile_object = new_tile
 	add_child(temp)
 
+func get_tile_object():
+	return tile_object
+
 signal mouse_clicked(this)
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton and event.pressed):
