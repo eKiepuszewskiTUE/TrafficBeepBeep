@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://chq0qciix1c2q"]
+[gd_scene load_steps=11 format=3 uid="uid://chq0qciix1c2q"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_lcnmb"]
 [ext_resource type="Texture2D" uid="uid://c67iheb65vi4k" path="res://inventorySprites/PlayB.png" id="3_lcqus"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cp8dkruc233hj" path="res://inventorySprites/PlayBC.png" id="4_v27lx"]
 [ext_resource type="Texture2D" uid="uid://dfil6p22afcwd" path="res://inventorySprites/ResB.png" id="5_gf000"]
 [ext_resource type="Texture2D" uid="uid://cspgobxxvlltq" path="res://inventorySprites/ResBC.png" id="6_h7w1n"]
+[ext_resource type="AudioStream" uid="uid://dk2fnv3e3f004" path="res://Sounds/background_music.mp3" id="7_1x8rf"]
+[ext_resource type="AudioStream" uid="uid://d02300wpxoc3p" path="res://Sounds/building_sound.mp3" id="8_2sv42"]
+[ext_resource type="AudioStream" uid="uid://diwji343xyijc" path="res://Sounds/car_engine.wav" id="9_kpg1p"]
+[ext_resource type="AudioStream" uid="uid://duk8bjnry0ehl" path="res://Sounds/blip.wav" id="10_30wtv"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_lcnmb")
@@ -44,6 +48,20 @@ texture_pressed = ExtResource("6_h7w1n")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1x8rf")
+autoplay = true
+
+[node name="BuildingSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2sv42")
+
+[node name="CarEnginePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kpg1p")
+volume_db = -19.915
+
+[node name="BlipPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_30wtv")
 
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="." method="_on_restart_button_pressed"]

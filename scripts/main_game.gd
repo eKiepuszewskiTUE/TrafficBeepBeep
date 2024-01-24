@@ -10,6 +10,8 @@ enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, Road
 var level = [Vector3(13,12,0), Vector3(8, 12, 1)]
 var playing : bool = false
 
+var LogicGates = [Tile_Type.AND, Tile_Type.NAND, Tile_Type.NOT, Tile_Type.OR, Tile_Type.XOR]
+
 # Preload gate scenes
 var gate_scenes = {
 	Tile_Type.AND: preload("res://Gates/AND.tscn"),
@@ -96,13 +98,26 @@ func _on_area_2d_mouse_entered(tile_instance):
 	tile_instance.set_double_tile(new_tile_selected)
 
 func _on_area_2d_input_event(tile_instance):
-	tile_instance.change_tile_object(new_tile_selected)
+	var tile_pos = tile_instance.position
+	var grid_pos = position_to_grid(tile_pos)
+	var next_grid_pos = grid_pos + Vector2(-1,0)
+	print(grid_pos)
+	if (new_tile_selected in LogicGates):
+		if (is_grid_empty(next_grid_pos)):
+			GameGrid[next_grid_pos.x][next_grid_pos.y].change_tile_object(Tile_Type.RoadS)
+			tile_instance.change_tile_object(new_tile_selected)
+			play_building_sound()
+	else:
+		tile_instance.change_tile_object(new_tile_selected)
+		play_building_sound()
 
 func start_game():
 	playing = true
+	start_car_engine()
 
 func stop_game():
 	playing = false
+	stop_car_engine()
 
 func restart():
 	for eCar in cars:
@@ -117,19 +132,51 @@ func _on_play_button_pressed():
 	else:
 		start_game()
 
+func play_blip():
+	$BlipPlayer.play()
+
 func position_to_grid(pos):
 	return Vector2(gridSize - int((pos.x + 8) / cellSize), gridSize - int((pos.y + 8) / cellSize))
 
 func is_grid_empty(coords):
 	return GameGrid[coords.x][coords.y].get_tile_object() == null
 
+func play_building_sound():
+	$BuildingSoundPlayer.play()
+
+func start_car_engine():
+	$CarEnginePlayer.play()
+
+func stop_car_engine():
+	$CarEnginePlayer.stop()
+
+var on_logic_gate : bool = false
 func _on_timer_timeout():
 	if (playing):
 		for eCar in cars:
-			#print(eCar.position)
-			#print(position_to_grid(eCar.position))
-			if (!is_grid_empty(position_to_grid(eCar.position))):
-				eCar.move(2)
+			print(eCar.position)
+			print(position_to_grid(eCar.position))
+			var gridPos = position_to_grid(eCar.position)
+			if (!is_grid_empty(gridPos)):
+				var step = Vector2(2, 0)
+				var tile_interacting_type = GameGrid[gridPos.x][gridPos.y].get_tile_type()
+				var tile_interacting = GameGrid[gridPos.x][gridPos.y].get_tile_object()
+				print(tile_interacting_type)
+				if (tile_interacting_type in LogicGates):
+					if (!on_logic_gate):
+						on_logic_gate = true
+						tile_interacting.set_inputs(eCar.get_value(), false)
+						eCar.set_value(tile_interacting.get_output())
+						play_blip()
+				else:
+					on_logic_gate = false
+				if (tile_interacting_type == Tile_Type.RoadD):
+					step = Vector2(2, 2)
+				if (tile_interacting_type == Tile_Type.RoadU):
+					step = Vector2(2, -2)
+				if (tile_interacting_type == Tile_Type.RoadV):
+					step = Vector2(0, 2)
+				eCar.move(step)
 
 
 func _on_restart_button_pressed():

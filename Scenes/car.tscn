@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj0osnqxe0i2m"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_4qc13"]
-[ext_resource type="Texture2D" uid="uid://crlq6mx1kpvff" path="res://sprites/Car1.png" id="1_jegc4"]
+[ext_resource type="Texture2D" uid="uid://crlq6mx1kpvff" path="res://sprites/CarRed.png" id="2_2f85e"]
 
 [node name="Car" type="Node2D"]
 script = ExtResource("1_4qc13")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jegc4")
+texture = ExtResource("2_2f85e")

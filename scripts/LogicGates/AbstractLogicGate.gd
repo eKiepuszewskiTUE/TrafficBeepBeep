@@ -8,6 +8,9 @@ func set_input(index, value):
 	inputs[index] = value
 	calculate_output()
 
+func get_output():
+	return output
+
 func _ready():
 	update_gate()
 

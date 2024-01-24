@@ -32,6 +32,7 @@ var dict = {
 	Tile_Type.XOR : xor_gate}
 
 var tile_object
+var tile_type
 var highlight_sprite : Sprite2D
 var double_tile : bool = false
 var tile_type_selected : Tile_Type
@@ -80,11 +81,15 @@ func change_tile_object(new_tile_type):
 		#tile_object.queue_free()
 		return
 	var temp = new_tile.instantiate()
-	tile_object = new_tile
 	add_child(temp)
+	tile_object = temp
+	tile_type = new_tile_type
 
 func get_tile_object():
 	return tile_object
+
+func get_tile_type():
+	return tile_type
 
 signal mouse_clicked(this)
 func _on_area_2d_input_event(viewport, event, shape_idx):
