@@ -5,6 +5,8 @@ var red_car_texture = preload("res://sprites/CarRed.png")
 
 var value : bool
 
+var direction : Vector2
+
 func move(step : Vector2):
 	position += step
 
@@ -17,3 +19,9 @@ func set_value(val):
 
 func get_value():
 	return value
+
+func set_direction(val):
+	direction = val
+
+func get_direction():
+	return direction

@@ -35,3 +35,9 @@ func _on_road_c_button_pressed():
 
 func _on_road_v_button_pressed():
 	gate_selected.emit("RoadV")
+
+func _on_source_button_pressed():
+	gate_selected.emit("Source")
+
+func _on_parking_lot_button_pressed():
+	gate_selected.emit("ParkingLot")

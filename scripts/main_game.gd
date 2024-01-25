@@ -7,7 +7,7 @@ var camera: Camera2D
 
 enum Tile_Type {AND, NAND, NOT, OR, XOR, RoadS, RoadB, RoadD, RoadU, RoadC, RoadV, Source, ParkingLot}
 
-var level = [Vector3(13,12,0), Vector3(8, 12, 1)]
+var level = [Vector3(13,8,0), Vector3(8, 8, 1)]
 var playing : bool = false
 
 var LogicGates = [Tile_Type.AND, Tile_Type.NAND, Tile_Type.NOT, Tile_Type.OR, Tile_Type.XOR]
@@ -69,6 +69,10 @@ func _on_gate_selected(gate_type: String) -> void:
 	print("Gate selected: ", gate_type)
 	
 	match gate_type:
+		"Source":
+			new_tile_selected = Tile_Type.Source
+		"ParkingLot":
+			new_tile_selected = Tile_Type.ParkingLot
 		"RoadS":
 			new_tile_selected = Tile_Type.RoadS
 		"RoadB":
@@ -107,6 +111,10 @@ func _on_area_2d_input_event(tile_instance):
 			GameGrid[next_grid_pos.x][next_grid_pos.y].change_tile_object(Tile_Type.RoadS)
 			tile_instance.change_tile_object(new_tile_selected)
 			play_building_sound()
+	elif (new_tile_selected == Tile_Type.Source):
+		level += [Vector3(grid_pos.x, grid_pos.y, 0)]
+		tile_instance.change_tile_object(new_tile_selected)
+		initialize_level()
 	else:
 		tile_instance.change_tile_object(new_tile_selected)
 		play_building_sound()
@@ -171,13 +179,16 @@ func _on_timer_timeout():
 				else:
 					on_logic_gate = false
 				if (tile_interacting_type == Tile_Type.RoadD):
+					eCar.set_direction(Vector2(1, 1))
 					step = Vector2(2, 2)
 				if (tile_interacting_type == Tile_Type.RoadU):
+					eCar.set_direction(Vector2(1, -1))
 					step = Vector2(2, -2)
 				if (tile_interacting_type == Tile_Type.RoadV):
-					step = Vector2(0, 2)
+					step = Vector2(0, eCar.get_direction().y * 2)
+				if (tile_interacting_type == Tile_Type.RoadC):
+					step = Vector2(1, eCar.get_direction().y * 0.8)
 				eCar.move(step)
-
 
 func _on_restart_button_pressed():
 	restart()

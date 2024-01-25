@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dq6goc8r51jxw"]
+[gd_scene load_steps=16 format=3 uid="uid://dq6goc8r51jxw"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_hwf0b"]
 [ext_resource type="Texture2D" uid="uid://b6vh4mwvj5nnq" path="res://inventorySprites/InvAnd.png" id="1_usk78"]
+[ext_resource type="Texture2D" uid="uid://crp844gxefu0l" path="res://inventorySprites/SourceInventory.png" id="2_elh4k"]
 [ext_resource type="Texture2D" uid="uid://c52n6bav8vytl" path="res://inventorySprites/InvRoad1L.png" id="2_jpo4s"]
 [ext_resource type="Texture2D" uid="uid://c28tglvyrrfu4" path="res://inventorySprites/InvSelect.png" id="2_pyhli"]
 [ext_resource type="Texture2D" uid="uid://qeyvqdenoglw" path="res://inventorySprites/InvNand.png" id="3_6aalx"]
+[ext_resource type="Texture2D" uid="uid://2u8ry3ww5rhd" path="res://inventorySprites/ParkingLotInventory.png" id="4_bjd8q"]
 [ext_resource type="Texture2D" uid="uid://be3fpw0u8avqv" path="res://inventorySprites/InvRoad2L.png" id="4_ntkd8"]
 [ext_resource type="Texture2D" uid="uid://ds4kcm2bkj6qy" path="res://inventorySprites/InvNot.png" id="4_pyyvr"]
 [ext_resource type="Texture2D" uid="uid://ftoedvx6p6nm" path="res://inventorySprites/InvOr.png" id="5_a8ndo"]
@@ -25,74 +27,95 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hwf0b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 3646.0
-offset_bottom = 731.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="RoadS_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Source_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_elh4k")
+texture_pressed = ExtResource("2_pyhli")
+
+[node name="ParkingLot_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_bjd8q")
+texture_pressed = ExtResource("2_pyhli")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RoadS_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("2_jpo4s")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="RoadB_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="RoadB_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("4_ntkd8")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="RoadD_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="RoadD_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("5_x7gmj")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="RoadU_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="RoadU_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("6_6nr0j")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="RoadC_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="RoadC_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("7_rmj0m")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="RoadV_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="RoadV_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("8_xw74x")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="AND_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AND_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("1_usk78")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="NAND_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="NAND_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("3_6aalx")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="NOT_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="NOT_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("4_pyyvr")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="OR_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="OR_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("5_a8ndo")
 texture_pressed = ExtResource("2_pyhli")
 
-[node name="XOR_Button" type="TextureButton" parent="HBoxContainer"]
+[node name="XOR_Button" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("6_7fd3y")
 texture_pressed = ExtResource("2_pyhli")
 
-[connection signal="pressed" from="HBoxContainer/RoadS_Button" to="." method="_on_road_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RoadB_Button" to="." method="_on_road_b_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RoadD_Button" to="." method="_on_road_d_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RoadU_Button" to="." method="_on_road_u_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RoadC_Button" to="." method="_on_road_c_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RoadV_Button" to="." method="_on_road_v_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/AND_Button" to="." method="_on_and_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/NAND_Button" to="." method="_on_nand_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/NOT_Button" to="." method="_on_not_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/OR_Button" to="." method="_on_or_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/XOR_Button" to="." method="_on_xor_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Source_Button" to="." method="_on_source_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ParkingLot_Button" to="." method="_on_parking_lot_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadS_Button" to="." method="_on_road_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadB_Button" to="." method="_on_road_b_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadD_Button" to="." method="_on_road_d_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadU_Button" to="." method="_on_road_u_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadC_Button" to="." method="_on_road_c_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RoadV_Button" to="." method="_on_road_v_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/AND_Button" to="." method="_on_and_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/NAND_Button" to="." method="_on_nand_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/NOT_Button" to="." method="_on_not_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/OR_Button" to="." method="_on_or_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/XOR_Button" to="." method="_on_xor_button_pressed"]
