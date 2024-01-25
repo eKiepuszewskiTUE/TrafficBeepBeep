@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhtb1o4vbsh45"]
+
+[ext_resource type="Script" path="res://Tutorial2.gd" id="1_tyarf"]
+[ext_resource type="Texture2D" uid="uid://cxjed8co3hbph" path="res://TruthTableSprites/TTand.png" id="2_nmv25"]
+[ext_resource type="Texture2D" uid="uid://dws016yojb60l" path="res://TruthTableSprites/TTnand.png" id="3_5qp4w"]
+[ext_resource type="Texture2D" uid="uid://bxf4v86ygphwn" path="res://TruthTableSprites/TTnor.png" id="4_i8s6j"]
+[ext_resource type="Texture2D" uid="uid://c8cr2rmc2vl8v" path="res://TruthTableSprites/TTnot.png" id="5_g37r4"]
+[ext_resource type="Texture2D" uid="uid://bjrj6v37sdqqq" path="res://TruthTableSprites/TTor.png" id="6_gtncj"]
+[ext_resource type="Texture2D" uid="uid://gmaoofue0bkv" path="res://TruthTableSprites/TTxor.png" id="7_xhwis"]
+[ext_resource type="Texture2D" uid="uid://snubh611lcx8" path="res://AdditionalArt/MoreButtons/exit.png" id="8_loqkv"]
+[ext_resource type="Texture2D" uid="uid://g8x57hh7er8j" path="res://AdditionalArt/MoreButtons/exitC.png" id="9_3ae2u"]
+[ext_resource type="Texture2D" uid="uid://c2reiakx45i24" path="res://AdditionalArt/MoreButtons/ArrowL.png" id="10_ht8t2"]
+[ext_resource type="Texture2D" uid="uid://ionlalan4gw1" path="res://AdditionalArt/MoreButtons/ArrowLC.png" id="11_nnreo"]
+
+[node name="Nt2" type="Node2D"]
+script = ExtResource("1_tyarf")
+
+[node name="TTand" type="Sprite2D" parent="."]
+position = Vector2(94, 175)
+scale = Vector2(0.288178, 0.301285)
+texture = ExtResource("2_nmv25")
+
+[node name="TTnand" type="Sprite2D" parent="."]
+position = Vector2(283, 175)
+scale = Vector2(0.292926, 0.300778)
+texture = ExtResource("3_5qp4w")
+
+[node name="TTnor" type="Sprite2D" parent="."]
+position = Vector2(485, 175)
+scale = Vector2(0.301744, 0.302637)
+texture = ExtResource("4_i8s6j")
+
+[node name="TTnot" type="Sprite2D" parent="."]
+position = Vector2(1052, 160)
+scale = Vector2(0.33813, 0.356374)
+texture = ExtResource("5_g37r4")
+
+[node name="TTor" type="Sprite2D" parent="."]
+position = Vector2(855, 166)
+scale = Vector2(0.287209, 0.295987)
+texture = ExtResource("6_gtncj")
+
+[node name="TTxor" type="Sprite2D" parent="."]
+position = Vector2(666, 174)
+scale = Vector2(0.28469, 0.291141)
+texture = ExtResource("7_xhwis")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1073.0
+offset_top = 509.0
+offset_right = 1113.0
+offset_bottom = 549.0
+scale = Vector2(6.05019, 5.48183)
+texture_normal = ExtResource("8_loqkv")
+texture_pressed = ExtResource("9_3ae2u")
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 17.0
+offset_top = 504.0
+offset_right = 57.0
+offset_bottom = 544.0
+scale = Vector2(6.05019, 5.48183)
+texture_normal = ExtResource("10_ht8t2")
+texture_pressed = ExtResource("11_nnreo")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button_2_pressed"]

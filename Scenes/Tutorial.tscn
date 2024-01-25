@@ -1,3 +1,37 @@
-[gd_scene format=3 uid="uid://c3lpjludwv1jo"]
+[gd_scene load_steps=7 format=3 uid="uid://c3lpjludwv1jo"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://Tutorial.gd" id="1_ff3mo"]
+[ext_resource type="Texture2D" uid="uid://x1ibphj0hcki" path="res://TruthTableSprites/output-onlinepngtools.png" id="1_qa6vk"]
+[ext_resource type="Texture2D" uid="uid://u0jsvqljsgjh" path="res://AdditionalArt/MoreButtons/ArrowR.png" id="3_8oj2s"]
+[ext_resource type="Texture2D" uid="uid://bxag024y51jcn" path="res://AdditionalArt/MoreButtons/ArrowRC.png" id="4_u63kp"]
+[ext_resource type="Texture2D" uid="uid://c2reiakx45i24" path="res://AdditionalArt/MoreButtons/ArrowL.png" id="5_g563w"]
+[ext_resource type="Texture2D" uid="uid://ionlalan4gw1" path="res://AdditionalArt/MoreButtons/ArrowLC.png" id="6_ey8tl"]
+
+[node name="TNode" type="Node2D"]
+script = ExtResource("1_ff3mo")
+
+[node name="Output-onlinepngtools" type="Sprite2D" parent="."]
+position = Vector2(598, 298)
+scale = Vector2(0.889952, 1.06182)
+texture = ExtResource("1_qa6vk")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 778.0
+offset_top = 460.0
+offset_right = 843.0
+offset_bottom = 535.0
+scale = Vector2(8.38867, 11.1263)
+texture_normal = ExtResource("3_8oj2s")
+texture_pressed = ExtResource("4_u63kp")
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 193.0
+offset_top = 454.0
+offset_right = 258.0
+offset_bottom = 529.0
+scale = Vector2(8.38867, 11.1263)
+texture_normal = ExtResource("5_g563w")
+texture_pressed = ExtResource("6_ey8tl")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button_2_pressed"]
