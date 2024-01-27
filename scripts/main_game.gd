@@ -39,12 +39,16 @@ func initialize_level():
 	for coords in level:
 		if (coords.z == 0):
 			GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.Source)
-			var new_car = car.instantiate()
-			new_car.position = GameGrid[coords.x][coords.y].position
-			cars += [new_car] 
-			add_child(new_car)
+			spawn_car(GameGrid[coords.x][coords.y].position)
 		if (coords.z == 1): 
 			GameGrid[coords.x][coords.y].change_tile_object(Tile_Type.ParkingLot)
+
+func spawn_car(pos):
+	var new_car = car.instantiate()
+	new_car.position = pos
+	cars += [new_car]
+	new_car.name = "car" + str(randi_range(-100, -1))
+	add_child(new_car)
 
 # Creates the game grid
 func create_game_grid() -> void:
@@ -105,7 +109,7 @@ func _on_area_2d_input_event(tile_instance):
 	var tile_pos = tile_instance.position
 	var grid_pos = position_to_grid(tile_pos)
 	var next_grid_pos = grid_pos + Vector2(-1,0)
-	print(grid_pos)
+	#print(grid_pos)
 	if (new_tile_selected in LogicGates):
 		if (is_grid_empty(next_grid_pos)):
 			GameGrid[next_grid_pos.x][next_grid_pos.y].change_tile_object(Tile_Type.RoadS)
@@ -114,7 +118,7 @@ func _on_area_2d_input_event(tile_instance):
 	elif (new_tile_selected == Tile_Type.Source):
 		level += [Vector3(grid_pos.x, grid_pos.y, 0)]
 		tile_instance.change_tile_object(new_tile_selected)
-		initialize_level()
+		spawn_car(tile_instance.position)
 	else:
 		tile_instance.change_tile_object(new_tile_selected)
 		play_building_sound()
@@ -128,8 +132,10 @@ func stop_game():
 	stop_car_engine()
 
 func restart():
+	var i = 0
 	for eCar in cars:
-		eCar.queue_free()
+		if (is_instance_valid(eCar)):
+			eCar.queue_free()
 	cars.clear()
 	stop_game()
 	initialize_level()
@@ -162,22 +168,31 @@ var on_logic_gate : bool = false
 func _on_timer_timeout():
 	if (playing):
 		for eCar in cars:
-			print(eCar.position)
-			print(position_to_grid(eCar.position))
+			if (!is_instance_valid(eCar)):
+				continue
+			#print(eCar.position)
+			#print(position_to_grid(eCar.position))
 			var gridPos = position_to_grid(eCar.position)
 			if (!is_grid_empty(gridPos)):
 				var step = Vector2(2, 0)
 				var tile_interacting_type = GameGrid[gridPos.x][gridPos.y].get_tile_type()
 				var tile_interacting = GameGrid[gridPos.x][gridPos.y].get_tile_object()
-				print(tile_interacting_type)
+				#print(tile_interacting_type)
 				if (tile_interacting_type in LogicGates):
-					if (!on_logic_gate):
-						on_logic_gate = true
-						tile_interacting.set_inputs(eCar.get_value(), false)
-						eCar.set_value(tile_interacting.get_output())
+					if (!eCar.on_logic_gate):
+						eCar.on_logic_gate = true
+						tile_interacting.set_input(eCar)
 						play_blip()
+						if (int(tile_interacting.get_output()) != -1):
+							var new_car = car.instantiate()
+							new_car.position = tile_interacting.global_position + Vector2(16, 0)
+							new_car.set_value(tile_interacting.get_output())
+							tile_interacting.destroy_cars()
+							new_car.name = "Car" + str(randi_range(0, 100))
+							add_child(new_car)
+							cars += [new_car]
 				else:
-					on_logic_gate = false
+					eCar.on_logic_gate = false
 				if (tile_interacting_type == Tile_Type.RoadD):
 					eCar.set_direction(Vector2(1, 1))
 					step = Vector2(2, 2)

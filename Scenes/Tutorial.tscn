@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3lpjludwv1jo"]
+[gd_scene load_steps=7 format=3 uid="uid://cifvscuv8wkxn"]
 
 [ext_resource type="Script" path="res://Tutorial.gd" id="1_ff3mo"]
 [ext_resource type="Texture2D" uid="uid://x1ibphj0hcki" path="res://TruthTableSprites/output-onlinepngtools.png" id="1_qa6vk"]
@@ -11,8 +11,8 @@
 script = ExtResource("1_ff3mo")
 
 [node name="Output-onlinepngtools" type="Sprite2D" parent="."]
-position = Vector2(598, 298)
-scale = Vector2(0.889952, 1.06182)
+position = Vector2(614, 298)
+scale = Vector2(1.02551, 1.06182)
 texture = ExtResource("1_qa6vk")
 
 [node name="TextureButton" type="TextureButton" parent="."]

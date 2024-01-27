@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhtb1o4vbsh45"]
+[gd_scene load_steps=12 format=3 uid="uid://bu66km4spxwig"]
 
 [ext_resource type="Script" path="res://Tutorial2.gd" id="1_tyarf"]
 [ext_resource type="Texture2D" uid="uid://cxjed8co3hbph" path="res://TruthTableSprites/TTand.png" id="2_nmv25"]

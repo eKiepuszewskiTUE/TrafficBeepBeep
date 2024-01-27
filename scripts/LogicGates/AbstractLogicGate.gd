@@ -1,12 +1,33 @@
 extends Node
 class_name LogicGate
 
-var inputs : Array[bool]
-var output : bool
+var inputs : Array[bool] = [false, false]
+var output
 
-func set_input(index, value):
-	inputs[index] = value
-	calculate_output()
+var cars = []
+
+func set_input(car):
+	var value = car.get_value()
+	if (len(cars) < 2):
+		output = -1
+	inputs[len(cars)] = value
+	cars += [car]
+	car.stop()
+	print(cars)
+	if (len(cars) == 2):
+		calculate_output()
+		destroy_cars()
+
+func destroy_cars():
+	for car in cars:
+		car.destroy()
+	cars = []
+
+func get_cars():
+	return cars
+
+func get_inputs():
+	return inputs
 
 func get_output():
 	return output
